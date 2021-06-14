@@ -1,0 +1,78 @@
+body{
+	background-repeat: no-repeat;
+    background-color: white;
+    background-size: 100% 100%;
+    background-image: url(../img/library1.jpg);
+}
+form{
+	width: 400px;
+	height: 400px;
+	background-image: linear-gradient(rgb(164 105 64),rgba(12, 23, 30, 0.9));
+	border-radius: 10px;
+	margin: 100px auto;
+}
+
+form h2{
+	text-align: center;
+	padding: 10px 0px;
+	color: #ffffff;
+}
+
+.form-row{
+	width: 300px;
+	height: 50px;
+	margin: 10px auto;
+}
+.form-row:last-of-type{
+	width: 300px;
+	height: 30px;
+	margin: 0px auto;
+}
+.form-row:last-of-type span{
+	font-size:14px;
+	color: #174c6b;
+}
+.form-row input[type="text"],input[type="password"]{
+	width: 280px;
+	height: 45px;
+	font-size: 22px;
+	display: block;
+	color: #000000;
+	background-color: rgba(250, 250, 250, 0.2);
+	border: 2px solid black;
+	border-radius: 10px;
+	padding-left: 15px;
+	outline: none;
+}
+#autoLogin{
+	margin-left:40px;
+	color: #87ccbc;
+}
+#autoLogin a{
+	margin-left:150px;
+	color:#1dd68f;
+}
+#errorTip{
+	margin-bottom: 10px;
+    color: red;
+    text-align: center;
+}
+form input[type="submit"]{
+	color:white;
+	display: block;
+	width: 200px;
+	height: 40px;
+	font-size: 24px;
+	margin: 10px auto;
+	border-radius: 10px;
+    background-color: transparent;
+}
+form input[type="submit"]:FOCUS{
+	border:none;
+}
+#leftPanel{
+	float:left;
+}
+#leftPanel img{
+	height: 100%;
+}

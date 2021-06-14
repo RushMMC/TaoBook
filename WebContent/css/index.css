@@ -1,0 +1,389 @@
+#firstLine{
+	width: 1200px;
+	height: 60px;
+	position: absolute;
+	background-color: rgba(224, 237, 211, 0.3);
+}
+#firstLine>div{
+	height: 60px;
+	display:flex;
+	margin:0px 50px;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 100;
+	
+}
+#logo{
+	font-size: 30px;
+	font-size: 50px;
+	font-family: "华文行楷";
+	margin:5px 0px 0px 5px;
+	display: inline-block;
+}
+#search{
+	width: 300px;
+	height: 40px;
+	line-height: 35px;
+	display: inline-block;
+}
+#search-keyword{
+	float: left;
+	display: inline-block;
+	height: 40px;
+	width: 200px;
+	background-color: rgba(0,0,0,0.3);
+	border-radius: 20px 0px 0px 20px;
+}
+#keyword{
+	color: white;
+	width: 180px;
+	height: 38px;
+	margin-left: 20px;
+	border-width: 0px;
+	outline: 0px;
+	background: 0px 0px;
+	border-radius: 25%;
+	display: inline-block;
+	background-color: rgba(0,0,0,0.0);
+}
+/*搜索输入设置提示文本*/
+input::-webkit-input-placeholder {
+    color: #ffffff;
+}
+#searchBtn{
+	width: 60px;
+	height: 40px;
+	display: inline-block;
+	color: green;
+	font-size: 18px;
+	border: none;
+	font-weight: bold;
+	background-color: #c1eda3;
+	border-radius: 0px 20px 20px 0px;
+	outline: 0px;
+	cursor: pointer;
+}
+#searchBtn:hover{
+	background-color: #96cc72;
+}
+#loginAndRegister{
+	display: inline-block;
+	font-size: 25px;
+}
+#loginAndRegister a{
+	color: black;
+}
+
+/*导航栏展示区*/
+#showPanel{
+	width: 1200px;
+	height: 460px;
+}
+.showImg{
+	width: 1200px;
+	color: #2a2a32;
+}
+
+#showPanel img{
+	position: absolute;
+	width: 1200px;
+	height: 460px;
+	z-index: -10;
+}
+
+#showPanel ul{
+	position: relative;
+	height: 400px;
+	width: 260px;
+	font-size: 20px;
+	margin-top: 60px;
+	color: rgba(0,0,0,0.7);
+	display: inline-block;
+	float: right;
+	z-index: 10;
+	background-image: linear-gradient(rgba(255,255,255,0.2), rgba(224,237,211,0.6),rgba(224,237,211,0.6),rgba(224,237,211,0.6),rgba(255,255,255,0.2));
+}
+
+#showPanel ul li{
+	height: 63px;
+	margin:5px;
+	line-height: 30px;
+	font-size: 20px;
+	padding-left: 10px;
+	transition:all 0.2s linear;
+}
+
+#showPanel ul li:hover{
+	background-color: rgba(224,237,211,0.9);
+	color: rgba(5,5,0,0.9);
+	font-weight: bold;
+	height: 63px;
+	line-height: 40px;
+	cursor: pointer;
+}
+
+#leftImgBtn{
+	float: left;
+	text-indent: -20px;
+}
+#rightImgBtn{
+	text-align: right;
+	float: right;
+	text-indent: -15px;
+}
+
+/*导航栏*/
+.navPanel{
+	width: 100%;
+	height: 120px;
+}
+.navPanel-col{
+	width: 240px;
+	height: 120px;
+	margin:3px 12px;
+	float: left;
+}
+.navPanel-row{
+	width: 100%;
+	height: 35px;
+	display: flex;
+	align-items: center;
+	background-color: #f8f8f8;
+	border-radius: 17px;
+	margin:15px 0px;
+}
+.nav-icon{
+	margin-left: 10px;
+	height: 17px;
+}
+.nav-item-name{
+	color: #000;
+	font-size: 17px;
+	font-weight: bold;
+	position: relative;
+	width: 80px;
+	letter-spacing: normal;
+	white-space: nowrap;
+	margin: 0px 5px;
+}
+
+.nav-item-flag{
+	color: #777;
+	font-size: 17px;
+	font-weight: 100;
+	margin:0px 2px;
+}
+
+.nav-item-e{
+	color: rgb(102, 102, 102);
+	max-width: 5em;
+	font-size: 15px;
+	letter-spacing: normal;
+	white-space: nowrap;
+	margin: 0px 5px;
+	overflow: hidden;
+}
+.navPanel-col-more{
+	width: 280px;
+	height: 90px;
+	float: left;
+	margin:20px 5px;
+	font-size: 15px;
+}
+.navPanel-col-more div{
+	width: 40px;
+	margin-right: 10px;
+	float: left;
+}
+.navPanel-col-more div a{
+	display: inline-block;
+	margin:10px 5px;
+}
+.navPanel-col-more div:last-child a:last-child{
+	color: red;
+}
+
+/*内容样式*/
+#content{
+	width: 100%;
+}
+h1{
+	margin-top: 10px;
+	font-weight: 100;
+}
+#hotList{
+	height: 200px;
+}
+#hotList li{
+	float: left;
+	margin-right: 5px;
+	width: 166px;
+	height: 190px;
+	font-size: 15px;
+}
+#hotList li a{
+	color: #666;
+}
+#hotList li img{
+	width: 100%;
+	height: 90px;
+	margin-bottom: 10px;
+}
+#hotList li img:hover{
+	box-shadow: 0px 0px 15px #888888 ;
+}
+#hotList li span:last-child{
+	height: 2.5em;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	
+}
+#hotList li a .time{
+	position: relative;
+	float: left;
+	top:85px;
+	left: 10px;
+	color: white;
+}
+/*带排行榜的一大块面板*/
+.panel{
+	width: 100%;
+	height: 750px;
+	/* background-color: #008000; */
+}
+.leftSubPanel{
+	float: left;
+	width: 850px;
+	/* background-color: #0080ff; */
+}
+.rightSubPanel{
+	float: left;
+	width: 350px;
+	/* background-color: #f08000; */
+}
+/*左面板*/
+.leftSubPanel ul{
+	margin-top: 10px;
+	height: 650px;
+}
+.leftSubPanel ul li{
+	float: left;
+	width: 180px;
+	margin: 15px;
+}
+.leftSubPanel ul li .card{
+	height: 250px;
+	transition: all 0.2s ease;
+}
+.leftSubPanel ul li .card:hover{
+	transform: scale(1.2);
+}
+.leftSubPanel ul li .card img{
+	width: 100%;
+	height: 100%;
+}
+.leftSubPanel ul li .card>span{
+	position: relative;
+	top: -30px;
+	left: 10px;
+	color: white;
+}
+.leftSubPanel ul li .cardName{
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 5px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.leftSubPanel ul li .cardDescribe{
+	margin-left: 5px;
+	font-size: 14px;
+	color: #777;
+}
+.rightSubPanel .rank{
+	margin-top: -35px;
+	/* background-color: #2A2A32; */
+}
+.rightSubPanel .rank li{
+	height: 45px;
+	padding: 15px;
+	border-bottom: 1px solid rgba(119,119,119,0.3);
+}
+.rightSubPanel .rank li a{
+	
+}
+.rank-bg{
+	z-index: -2;
+	position: relative;
+	top: -70px;
+	left: 170px;
+	width: 26px;
+	height: 50px;
+	border-radius: 13px 13px 0 0;
+	background-image: linear-gradient(-180deg,#ff5c38,rgba(255,255,255,0) 83%);
+	opacity: .4;
+}
+.rank-bg::before,.rank-bg::after {
+	position:absolute;
+	top:68px;
+	left:-30px;
+	width:20px;
+	height:30px;
+	border-radius:10px 10px 0 0;
+	background-image:linear-gradient(-180deg,#ffb821,rgba(255,255,255,0) 79%);content:"";
+}
+.rank-bg::after{
+	top:40px;
+	right:-35px;
+	left:auto;
+	width:14px;
+	height:40px;
+	border-radius:7px 7px 0 0;
+	background-image:linear-gradient(-180deg,#ff117a,rgba(255,255,255,0) 77%)
+}
+.rightSubPanel .rank .rank-num{
+	padding: 10px;
+	font-size: 26px;
+	color: #777;
+}
+.rank-num-1,.rank-num-2,.rank-num-3{
+	color:red;
+	padding: 10px;
+	font-size: 26px;
+	-webkit-text-fill-color: transparent;
+	-webkit-background-clip: text;
+	background-image: linear-gradient(180deg,#ffb821 0,#ff5c38 45%,#752a2f);
+}
+
+.rank-title{
+	font-size: 15px;
+	font-weight: bold;
+	display: inline-block;
+    overflow: hidden;
+    width: 260px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+}
+.rank-title:hover{
+	color: red;
+}
+.rank-desc{
+	display: block;
+	font-size: 13px;
+	color: #777;
+	margin-left: 35px;
+}
+.rank-update{
+	position: relative;
+	float: right;
+	top:-40px;
+	right: -10px;
+	color: #777;
+}
