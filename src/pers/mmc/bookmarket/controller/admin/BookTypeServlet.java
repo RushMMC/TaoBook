@@ -17,36 +17,65 @@ import pers.mmc.bookmarket.service.BookTypeService;
 /**
  * Servlet implementation class BookTypeServlet
  */
-@WebServlet(name="/BookTypeServlet",value={"/admin/addBooktype.ado","/admin/queryBooktype.ado"})
+@WebServlet(name="/BookTypeServlet",
+	value={"/admin/addBookType.ado","/admin/queryBookType.ado",
+		"/admin/updateBookType.ado","/admin/showBookType.ado"})
 public class BookTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	BookTypeService service = new BookTypeService();
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public BookTypeServlet() {
+
+	public BookTypeServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
-		if ("/admin/queryBooktype.ado".equals(path)) {
+		if ("/admin/queryBookType.ado".equals(path)) {
 			List<BookType> list = service.queryAllBookType();
 			String jsonString = JSON.toJSONString(list);
 			response.getWriter().write(jsonString);
+		}else if("/admin/showBookType.ado".equals(path)){
+			List<BookType> list = service.queryAllBookType();
+			request.setAttribute("booktypes", list);
+			request.getRequestDispatcher("jsp/showBookType.jsp").forward(request, response);
+		}else if("/admin/updateBookType.ado".equals(path)){
+			String idStr = request.getParameter("id");
+			if(idStr!=null&& !"".equals(idStr)){
+				BookType type = service.queryBookType(Integer.parseInt(idStr));
+				request.setAttribute("type", type);
+				request.getRequestDispatcher("jsp/updateBookType.jsp").forward(request, response);
+			}else{
+				request.setAttribute("message", "参数错误");
+				request.getRequestDispatcher("jsp/error.jsp").forward(request, response);
+			}
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String path = request.getServletPath();
+		String message = "添加失败";
+		if ("/admin/addBookType.ado".equals(path)) {
+			String typename = request.getParameter("typename");
+			boolean addType = service.addType(new BookType(0, typename));
+			if (addType) {
+				message="添加成功";
+			}
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("jsp/addBookType.jsp").forward(request, response);
+		}else if("/admin/updateBookType.ado".equals(path)){
+			String idStr = request.getParameter("id");
+			String typename = request.getParameter("typename");
+			if(idStr!=null&& !"".equals(idStr)){
+				BookType type = new BookType(Integer.parseInt(idStr), typename);
+				if(service.updateType(type)){
+					message="添加成功";
+				}
+				
+			}
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("jsp/updateBookType.jsp").forward(request, response);
+		}
 	}
 
 }

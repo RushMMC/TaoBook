@@ -42,4 +42,7 @@ public class BookService {
 		return bookDao.updateBook(book);
 	}
 	
+	public List<Book> queryNewBooks(long start,long offset){
+		return bookDao.queryNewBook(start,offset);
+	}
 }

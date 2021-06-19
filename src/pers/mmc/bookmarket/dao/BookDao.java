@@ -20,5 +20,7 @@ public interface BookDao {
 	List<Book> queryBooksByBook(BookQParam param);
 
 	int queryBooksTotalByParam(BookQParam param);
+
+	List<Book> queryNewBook(long start,long offset);
 	
 }

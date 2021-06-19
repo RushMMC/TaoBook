@@ -1,6 +1,7 @@
 package pers.mmc.bookmarket.controller.client;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import pers.mmc.bookmarket.entity.Book;
-import pers.mmc.bookmarket.entity.CartItem;
 import pers.mmc.bookmarket.entity.GoodsItem;
+import pers.mmc.bookmarket.entity.OrderItem;
 import pers.mmc.bookmarket.entity.ShoppingCart;
 import pers.mmc.bookmarket.service.BookService;
-import pers.mmc.bookmarket.service.ShoppingCarttService;
+import pers.mmc.bookmarket.service.OrderService;
 
 @WebServlet(name = "ShoppingCartServlet", urlPatterns = { "/addToCart.do",
 		"/viewProductDetails.do", "/deleteItem.do", "/showShoppingCart.do",
@@ -24,7 +25,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 5504970214885302771L;
 	BookService bookService = new BookService();
-	ShoppingCarttService cartService = new ShoppingCarttService();
+	OrderService cartService = new OrderService();
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -36,30 +37,40 @@ public class ShoppingCartServlet extends HttpServlet {
 		} else if ("/showShoppingCart.do".equals(path)) {
 			showBooks(request, response);
 		} else if ("/clearShoppingCart.do".equals(path)) {
-			boolean result=true;
-			HttpSession session = request.getSession();
-			try{
-				cartService.addItems(null,(int) session.getAttribute("userId"));
-				ShoppingCart cart=(ShoppingCart) session.getAttribute("cart");
-				cart.clear();
-			}catch(Exception e){
-				result=false;
-			}
-			response.getWriter().write(result?"购买成功":"购买失败");
+			clearShoppingCart(request, response);
 		}
+	}
+
+	private void clearShoppingCart(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		boolean result=true;
+		HttpSession session = request.getSession();
+		try{
+			ShoppingCart cart=(ShoppingCart) session.getAttribute("cart");
+			List<OrderItem> orderItems = cartService.queryItemsByUserId((int) session.getAttribute("userId"));
+			List<Integer> idList=new ArrayList<>();
+			for (OrderItem order: orderItems) {
+				idList.add(order.getId());
+			}
+			cartService.upDateOrderPayState(idList);
+			cart.clear();
+		}catch(Exception e){
+			result=false;
+		}
+		response.getWriter().write(result?"购买成功":"购买失败");
 	}
 
 	private void showBooks(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		Integer id = (Integer) session.getAttribute("userId");
-		List<CartItem> items = cartService.queryItemsByUserId(id);
+		List<OrderItem> items = cartService.queryItemsByUserId(id);
 		ShoppingCart cart = (ShoppingCart) session.getAttribute("cart");
 		if (cart == null) {
 			cart = new ShoppingCart();
 			session.setAttribute("cart", cart);
 		}
-		for (CartItem cartItem : items) {
+		for (OrderItem cartItem : items) {
 			cart.add(new GoodsItem(bookService.queryBookById(cartItem
 					.getBookId()), cartItem.getQuantity()));
 		}

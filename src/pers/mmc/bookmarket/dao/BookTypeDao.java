@@ -9,4 +9,8 @@ public interface BookTypeDao {
 	boolean addType(BookType type);
 	
 	List<BookType> queryAllBookType();
+
+	boolean updateBookType(BookType type);
+
+	BookType queryBookType(int id);
 }

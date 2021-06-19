@@ -19,7 +19,8 @@ import pers.mmc.bookmarket.service.BookService;
 
 @MultipartConfig
 @WebServlet(name="AdminBookServlet",
-	value={"/admin/addBook.ado","/admin/queryBook.ado","/admin/updateBook.ado"})
+	value={"/admin/addBook.ado","/admin/queryBook.ado",
+		"/admin/updateBook.ado","/admin/downBook.ado"})
 public class BookServlet extends HttpServlet{
 
 	private static final long serialVersionUID = -4771047501781828984L;
@@ -38,6 +39,14 @@ public class BookServlet extends HttpServlet{
 			request.getRequestDispatcher("jsp/updateBook.jsp").forward(request, response);
 		}else if("/admin/queryBook.ado".equals(path)){
 			queryBook(request,response);
+		}else if("/admin/downBook.ado".equals(path)){
+			String idStr = request.getParameter("id");
+			int id = Integer.parseInt(idStr);
+			Book book = service.queryBookById(id);
+			book.setIsSell(false);
+			service.updateBook(book);
+			request.setAttribute("message", "下架成功");
+			request.getRequestDispatcher("queryBook.ado").forward(request, response);
 		}
 	}
 

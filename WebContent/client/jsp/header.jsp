@@ -97,7 +97,7 @@ input::-webkit-input-placeholder {
 			<c:otherwise>
 				<div id="loginAndRegister">
 					<span>${username }！</span> <a
-						href="${pageContext.request.contextPath }/showShoppingCart.do">购物车</a>
+						href="${pageContext.request.contextPath }/showShoppingCart.do">订单</a>
 					<a href="${pageContext.request.contextPath }/logout.do">注销</a>
 				</div>
 			</c:otherwise>

@@ -23,7 +23,13 @@ list-style-type: none;
 		<summary tabindex="2">类别管理</summary>
     	<ul>
     		<li><a href="${pageContext.request.contextPath }/admin/jsp/addBookType.jsp" target="panel" >添加类别</a></li>
-    		<li><a href="${pageContext.request.contextPath }/admin/queryBookType.ado" target="panel">查询类别</a></li>
+    		<li><a href="${pageContext.request.contextPath }/admin/showBookType.ado" target="panel">查询类别</a></li>
+    	</ul>
+	</details>
+	<details>
+		<summary tabindex="2">订单管理</summary>
+    	<ul>
+    		<li><a href="${pageContext.request.contextPath }/admin/jsp/queryOrder.jsp" target="panel" >查询订单</a></li>
     	</ul>
 	</details>
 </div>

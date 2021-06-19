@@ -38,8 +38,8 @@ public class InitDataListener implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent param)  {
     	ServletContext context = param.getServletContext();
-    	context.setAttribute("newBooks", service.queryBooksByParam(new BookQParam(1,8L)));
-    	context.setAttribute("newBooksRank", service.queryBooksByParam(new BookQParam(10,10L)));
+    	context.setAttribute("newBooks", service.queryNewBooks(0L,8L));
+    	context.setAttribute("newBooksRank", service.queryNewBooks(10L,10L));
     	context.setAttribute("books", service.queryBooksByParam(new BookQParam(20,8L)));
     	context.setAttribute("booksRank", service.queryBooksByParam(new BookQParam(30,10L)));
     	context.setAttribute("bookTypes", typeService.queryAllBookType());

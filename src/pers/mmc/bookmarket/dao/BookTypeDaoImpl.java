@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import pers.mmc.bookmarket.entity.BookType;
@@ -22,7 +23,7 @@ public class BookTypeDaoImpl implements BookTypeDao{
 		try {
 			conn = DBCPUtil.getConnection();
 			pstmt = conn
-					.prepareStatement("insert into user(typename) values(?)");
+					.prepareStatement("insert into type(typename) values(?)");
 			pstmt.setString(1, type.getTypename());
 			return pstmt.executeUpdate() > 0;
 		} catch (SQLException e) {
@@ -48,6 +49,39 @@ public class BookTypeDaoImpl implements BookTypeDao{
 			DBCPUtil.release(conn, pstmt, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public boolean updateBookType(BookType type) {
+		try {
+			conn = DBCPUtil.getConnection();
+			pstmt = conn.prepareStatement("update type set typename=? where id=?");
+			pstmt.setString(1, type.getTypename());
+			pstmt.setInt(2, type.getId());
+			return pstmt.executeUpdate()>0;
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			DBCPUtil.release(conn, pstmt, rs);
+		}
+		return false;
+	}
+
+	@Override
+	public BookType queryBookType(int id) {
+		BookType type=null;
+		try {
+			conn = DBCPUtil.getConnection();
+			pstmt = conn.prepareStatement("select * from type where id=?");
+			pstmt.setInt(1, id);
+			rs=pstmt.executeQuery();
+			type=new BeanHandler<>(BookType.class).handle(rs);
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			DBCPUtil.release(conn, pstmt, rs);
+		}
+		return type;
 	}
 
 }

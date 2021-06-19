@@ -8,10 +8,10 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import pers.mmc.bookmarket.entity.CartItem;
+import pers.mmc.bookmarket.entity.OrderItem;
 import pers.mmc.bookmarket.entity.GoodsItem;
 import pers.mmc.bookmarket.entity.ShoppingCart;
-import pers.mmc.bookmarket.service.ShoppingCarttService;
+import pers.mmc.bookmarket.service.OrderService;
 
 /**
  * Application Lifecycle Listener implementation class SessionListener
@@ -20,7 +20,7 @@ import pers.mmc.bookmarket.service.ShoppingCarttService;
 @WebListener
 public class SessionListener implements HttpSessionListener {
 
-	private ShoppingCarttService cartService = new ShoppingCarttService();
+	private OrderService cartService = new OrderService();
 	public SessionListener() {
     }
 
@@ -35,11 +35,10 @@ public class SessionListener implements HttpSessionListener {
     	HttpSession session = se.getSession();
     	int id = (int) session.getAttribute("userId");
     	ShoppingCart card = (ShoppingCart) session.getAttribute("cart");
-    	List<CartItem> list=new ArrayList<>();
+    	List<OrderItem> list=new ArrayList<>();
     	if(card!=null){
-    		System.out.println("存储购物车");
     		for (GoodsItem item:card.getItems()) {
-    			list.add(new CartItem(null, id, item.getBook().getId(), item.getQuantity()));
+    			list.add(new OrderItem(null, id, item.getBook().getId(), item.getQuantity()));
     		}
     		cartService.addItems(list,id);
     	}
