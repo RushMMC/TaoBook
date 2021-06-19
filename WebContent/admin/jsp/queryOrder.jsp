@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>查询图书</title>
+<title>查询订单</title>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/ajaxRequest.js"></script>
 <style>
 #searchPanel{
@@ -68,16 +68,15 @@ table tr td{
     text-align: center;
     padding-right: 20px;
 }
-input,select,option{
-	color:#000;
-}
+
 input[type="submit"]{
 	width:80px;
 	border:1px solid #74ebfb;
 	background-color: rgb(255 255 255 / 12%);
 	color:#74ebfb;
 }
-input,select{
+input{
+	color:black;
 	height:30px;
 	box-sizing: border-box;
 	outline:0px;
@@ -85,67 +84,35 @@ input,select{
 </style>
 </head>
 <body>
-<h4>图书查询</h4>
-${message }
+<h4>订单查询</h4>
 <hr>
 	<div id="searchPanel">
-		<form>
-			<input type="text" name="title" placeholder="书名"/>
-			<input type="text" name="author" placeholder="作者"/>
-			<input type="text" name="isbn" placeholder="ISBN编号"/>
-			<select id="bookselect" name="type" onclick="loadSelect()">
-				<option value="">---请选择---</option>
-			</select>
+		<form action="${pageContext.request.contextPath }/admin/queryOrder.ado" method="post">
+			<input type="text" name="userId" placeholder="用户ID"/>
 			<input type="submit" value="搜索"/>
 		</form>
 	</div>
-	<script type="text/javascript">
-		var select=document.getElementById("bookselect");
-		var xmlHttp;
-		var data=null;
-		function loadSelect(){
-			if(data==null){
-				xmlHttp=createXMLHttpRequest();
-				xmlHttp.onreadystatechange=function(){
-					if(xmlHttp.readyState==4){
-						if(xmlHttp.status==200){
-							data = JSON.parse(xmlHttp.responseText);
-							for (var type of data) {
-								console.log(type);
-								select.options.add(new Option(type.typename,type.id));
-							}
-						}
-					}
-				};
-				xmlHttp.open("GET","${pageContext.request.contextPath}/admin/queryBookType.ado",true);
-				xmlHttp.send(null);
-			}
-		}
-	</script>
+
 	<div id="showPanel">
 		<table>
 			<tr>
-				<th>编号</th>
-				<th>书名</th>
-				<th>作者</th>
-				<th>ISBN</th>
-				<th>价格</th>
-				<th>库存</th>
-				<th>状态</th>
-				<th>修改</th>
-				<th>下架</th>
+				<th>订单编号</th>
+				<th>用户ID</th>
+				<th>书本编号</th>
+				<th>书本名</th>
+				<th>总量</th>
+				<th>是否支付</th>
+				<th>删除</th>
 			</tr>
-			<c:forEach var="book" items="${queryBooks }">
+			<c:forEach var="order" items="${orders }">
 				<tr>
-					<td>${book.id }</td>
-					<td>${book.title }</td>
-					<td>${book.author }</td>
-					<td>${book.isbn }</td>
-					<td>${book.price }</td>
-					<td>${book.quantity }</td>
-					<td>${book.isSell ?'在售' : '下架' }</td>
-					<td><a href="${pageContext.request.contextPath }/admin/updateBook.ado?id=${book.id}">修改</a></td>
-					<td><a href="${pageContext.request.contextPath }/admin/downBook.ado?id=${book.id}">下架</a></td>
+					<td>${order.id }</td>
+					<td>${order.user.id }</td>
+					<td>${order.book.id }</td>
+					<td>${order.book.title}</td>
+					<td>${order.quantity }</td>
+					<td>${order.isPaid?'已支付':'未支付'}</td>
+					<td><a href="${pageContext.request.contextPath }/admin/deleteOrder.ado?id=${order.id}">删除</a></td>
 				</tr>
 			</c:forEach>
 		</table>

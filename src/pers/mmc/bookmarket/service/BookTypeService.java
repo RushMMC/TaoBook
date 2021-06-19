@@ -17,6 +17,13 @@ public class BookTypeService {
 		return dao.addType(type);
 	}
 	
+	public BookType queryBookType(int id){
+		return dao.queryBookType(id);
+	}
+	public boolean updateType(BookType type){
+		return dao.updateBookType(type);
+	}
+	
 	public List<BookType> queryAllBookType(){
 		return dao.queryAllBookType();
 	}

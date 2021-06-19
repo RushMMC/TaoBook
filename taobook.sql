@@ -78,17 +78,18 @@ INSERT INTO `book` VALUES (1,'小学生必背古诗词75+80首（朗读临摹版
 UNLOCK TABLES;
 
 --
--- Table structure for table `shopping_cart`
+-- Table structure for table `order`
 --
 
-DROP TABLE IF EXISTS `shopping_cart`;
+DROP TABLE IF EXISTS `order`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `shopping_cart` (
+CREATE TABLE `order` (
   `id` int NOT NULL AUTO_INCREMENT,
   `userid` int NOT NULL,
   `bookid` int NOT NULL,
   `quantity` int NOT NULL,
+  `isPaid` tinyint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_car_userid_idx` (`userid`),
   KEY `fk_car_bookid_idx` (`bookid`),
@@ -96,16 +97,6 @@ CREATE TABLE `shopping_cart` (
   CONSTRAINT `fk_car_userid` FOREIGN KEY (`userid`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `shopping_cart`
---
-
-LOCK TABLES `shopping_cart` WRITE;
-/*!40000 ALTER TABLE `shopping_cart` DISABLE KEYS */;
-INSERT INTO `shopping_cart` VALUES (16,4,3,4),(17,4,842,24),(18,4,27,20);
-/*!40000 ALTER TABLE `shopping_cart` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `type`

@@ -40,7 +40,6 @@ public class LoginFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//		System.out.println("登录过滤器");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		Object name = httpRequest.getSession().getAttribute("username");
@@ -65,16 +64,15 @@ public class LoginFilter implements Filter {
 				if (username!=null && password!=null) {
 					isRedirect = !service.login(new User(username, password, ""));
 					if (!isRedirect) {
+						httpRequest.getSession().setAttribute("userId", service.findUserByUserName(username).getId());
 						httpRequest.getSession().setAttribute("username", username);
 					}
 				}
 			}
 		}
 		if (isRedirect) {
-//			System.out.println("重新登录");
 			httpResponse.sendRedirect(request.getServletContext().getContextPath()+"/client/jsp/login.jsp");
 		}else{
-//			System.out.println("传递");
 			chain.doFilter(request, response);
 		}
 	}

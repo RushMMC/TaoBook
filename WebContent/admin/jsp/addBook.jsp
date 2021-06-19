@@ -23,6 +23,9 @@ input[type="submit"]{
 	background-color: rgb(255 255 255 / 12%);
 	color:#74ebfb;
 }
+input[type="file"]{
+	color:white;
+}
 </style>
 <div>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/ajaxRequest.js"></script>
@@ -88,7 +91,7 @@ input[type="submit"]{
 						}
 					}
 				};
-				xmlHttp.open("GET","${pageContext.request.contextPath}/admin/queryBooktype.ado",true);
+				xmlHttp.open("GET","${pageContext.request.contextPath}/admin/queryBookType.ado",true);
 				xmlHttp.send(null);
 			}
 		}

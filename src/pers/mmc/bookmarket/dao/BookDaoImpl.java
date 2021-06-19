@@ -93,6 +93,25 @@ public class BookDaoImpl implements BookDao {
 		}
 		return false;
 	}
+	
+	@Override
+	public List<Book> queryNewBook(long start,long offset){
+		String sql = "SELECT * FROM book order by createDate desc limit ?,?";
+		List<Book> list = null;
+		try {
+			conn = DBCPUtil.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, start);
+			pstmt.setLong(2,offset);
+			rs = pstmt.executeQuery();
+			list = new BeanListHandler<>(Book.class).handle(rs);
+		} catch (SQLException se) {
+			se.printStackTrace();
+		} finally {
+			DBCPUtil.release(conn, pstmt, rs);
+		}
+		return list;
+	}
 
 	@Override
 	public List<Book> queryBooksByBook(BookQParam param) {
@@ -231,7 +250,6 @@ public class BookDaoImpl implements BookDao {
 		return sql;
 	}
 
-	
 	@Override
 	public boolean updateBook(Book book) {
 		try {

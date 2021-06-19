@@ -9,6 +9,7 @@ public class BookQParam {
 	private String isbn;
 	private Float price;
 	private Integer type;
+	private Boolean isSell;
 	private Date createDate;
 	private Date updateDate;
 	private Integer start;
@@ -117,6 +118,16 @@ public class BookQParam {
 
 	public boolean isWhere() {
 		return isWhere;
+	}
+
+	
+	public Boolean getIsSell() {
+		return isSell;
+	}
+
+	public void setIsSell(Boolean isSell) {
+		isWhere = true;
+		this.isSell = isSell;
 	}
 
 

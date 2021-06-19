@@ -1,10 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
-	img{
-		width:200px;
-		height:200px;
-	}
+*{
+	color:#fff;
+}
+input,select,option{
+	height:30px;
+	outline:0px;
+	color:black;
+}
+input{
+	color:#000;
+}
+td:nth-child(1){
+	text-align: right;
+}
+table{
+	margin: 30px auto;
+}
+input[type="submit"]{
+	width:80px;
+	border:1px solid #74ebfb;
+	background-color: rgb(255 255 255 / 12%);
+	color:#74ebfb;
+}
+input[type="file"]{
+	color:white;
+}
+img{
+	width:200px;
+	height:200px;
+}
 </style>
 <div>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/ajaxRequest.js"></script>
@@ -78,7 +104,7 @@
 						}
 					}
 				};
-				xmlHttp.open("GET","${pageContext.request.contextPath}/admin/queryBooktype.ado",true);
+				xmlHttp.open("GET","${pageContext.request.contextPath}/admin/queryBookType.ado",true);
 				xmlHttp.send(null);
 			}
 		}
